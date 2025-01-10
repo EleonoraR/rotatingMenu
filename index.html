@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotating Navigation Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1e90ff, #ff6347);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 350px;
+      height: 350px;
+    }
+
+    .circle {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: rotate(0deg);
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .circle.open {
+      transform: rotate(-90deg);
+    }
+
+    .menu {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu a {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: #ff6347;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      line-height: 100px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.4s ease, background 0.3s ease;
+    }
+
+    .menu a:hover {
+      background: #1e90ff;
+    }
+
+    .menu a:nth-child(1) {
+      transform: translate(0, -150px) scale(1);
+    }
+
+    .menu a:nth-child(2) {
+      transform: translate(105px, -105px) scale(1);
+    }
+
+    .menu a:nth-child(3) {
+      transform: translate(150px, 0) scale(1);
+    }
+
+    .menu a:nth-child(4) {
+      transform: translate(105px, 105px) scale(1);
+    }
+
+    .menu a:nth-child(5) {
+      transform: translate(0, 150px) scale(1);
+    }
+
+    .circle.open .menu a {
+      transform: none;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1e90ff;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #ff6347;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="circle" id="circle">
+      <div class="menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <button class="toggle-btn" id="toggle-btn">&#9776;</button>
+  </div>
+
+  <script>
+    const circle = document.getElementById('circle');
+    const toggleBtn = document.getElementById('toggle-btn');
+
+    toggleBtn.addEventListener('click', () => {
+      circle.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
